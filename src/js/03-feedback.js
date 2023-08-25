@@ -8,6 +8,9 @@ const formMessage = form.querySelector('textarea[name="message"]');
 form.addEventListener('input', throttle(inputData, 500));
 form.addEventListener('submit', onFormSubmit);
 
+// Firstly, the object with the form data has been created and the values are now assigned 
+//to the keys.
+//Local Storage data has been setted and converted to string.
 function inputData() {
     const formData = {
         email: formEmail.value,
@@ -15,6 +18,10 @@ function inputData() {
     };
     localStorage.setItem(FEEDBACK_KEY, JSON.stringify(formData));
 }
+
+//Created new constant to use it, when the page will be reloaded.
+//Added the verification if there are some values in the input to put them back,
+//while reloading. 
 
 function onPageReload() {
     const data = JSON.parse(localStorage.getItem(FEEDBACK_KEY));
@@ -25,6 +32,9 @@ function onPageReload() {
 };
 
 onPageReload();
+
+//Created new constants and used it to check if all the fiels has been filled.
+//New object also has been created to console.log submitted user data.
 
 function onFormSubmit(e) {
     e.preventDefault();
